@@ -6,6 +6,7 @@ var logger = require('morgan');
 const { default: mongoose } = require('mongoose');
 require('dotenv').config();
 const passport = require('passport');
+const cors = require('cors');
 
 var authRouter = require('./routes/auth/router');
 var productsRouter = require('./routes/product/router');
@@ -25,6 +26,12 @@ const {
 } = require('./middlewares/passport');
 
 var app = express();
+
+app.use(
+  cors({
+    origin: '*',
+  }),
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
